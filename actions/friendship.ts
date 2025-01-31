@@ -214,22 +214,23 @@ export const checkFriendshipStatus = async ({
 }) => {
   const supabase = await createClient();
 
+  // Check if user is trying to check their own friendship
   if (userId === targetUserId) {
     return true;
   }
 
-  const { data, error } = await supabase
+  const { data: friendship, error } = await supabase
     .from("friendships")
-    .select("id") // Select only the `id` for performance
+    .select("*")
     .or(
       `requester_id.eq.${userId},addressee_id.eq.${targetUserId},requester_id.eq.${targetUserId},addressee_id.eq.${userId}`
     )
     .eq("status", "approved")
-    .limit(1); // Only need to check if at least one row exists
+    .single();
 
-  if (error) {
-    return false; // Assume not friends if an error occurs
+  if (error || !friendship) {
+    return false;
   }
 
-  return data?.length > 0; // If there is at least one row, return true
+  return true;
 };

@@ -132,13 +132,22 @@ export function SecretMessagesClient({
           </div>
         ))}
 
-        {messages.length === 0 && (
+        {user?.id === userId && messages.length === 0 && (
           <div className="flex justify-center items-center border rounded-xl">
             <EmptyState
               title="No Secret Messages Yet"
               subtitle="Create your first encrypted message to share sensitive information securely with others."
               redirectLink="/secret-page-2"
               redirectLabel="Create message"
+            />
+          </div>
+        )}
+
+        {user?.id !== userId && messages.length === 0 && (
+          <div className="flex justify-center items-center border rounded-xl">
+            <EmptyState
+              title="No Secret Messages Yet"
+              subtitle="Your friend has not shared any secret message with you yet."
             />
           </div>
         )}

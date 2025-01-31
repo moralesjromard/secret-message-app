@@ -58,22 +58,20 @@ const SecretMessagesPage = async ({
     return <Forbidden />;
   }
 
+  console.log();
+
   return (
     <>
       <header className="flex flex-col mb-6 gap-6">
         <div className="flex flex-col">
           <h2 className="text-2xl font-bold">
-            {data?.user?.id === userId
-              ? "Your "
-              : `${result[0].user.name.split(" ")[0]} 's `}
+            {data?.user?.id === userId ? "Your " : "Friend's "}
             Secret Messages
           </h2>
           <p className="text-muted-foreground">
             {data?.user?.id === userId
               ? "Here are your secret messages."
-              : `${
-                  result[0].user.name.split(" ")[0]
-                } has shared some secret messages with you.`}
+              : "Your friend has shared some secret message with you."}
           </p>
         </div>
         <Breadcrumb>
@@ -84,7 +82,9 @@ const SecretMessagesPage = async ({
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbPage>
-                {result[0].user.name.split(" ")[0]}'s secret messages
+                {data?.user?.id === userId
+                  ? "Your secret messages"
+                  : "Friend's secret messages"}
               </BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
