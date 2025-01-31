@@ -221,9 +221,10 @@ export const checkFriendshipStatus = async ({
 
   const { data: friendship, error } = await supabase
     .from("friendships")
-    .select("*")
+    .select("id")
     .or(
-      `requester_id.eq.${userId},addressee_id.eq.${targetUserId},requester_id.eq.${targetUserId},addressee_id.eq.${userId}`
+      `and(requester_id.eq.${userId},addressee_id.eq.${targetUserId}),` +
+        `and(requester_id.eq.${targetUserId},addressee_id.eq.${userId})`
     )
     .eq("status", "approved")
     .single();
