@@ -162,7 +162,7 @@ export const RegisterForm = () => {
                     <LoaderCircle className="ml-2 h-5 w-5 animate-spin" />
                   </>
                 ) : (
-                  "Sign in"
+                  "Sign up"
                 )}
               </Button>
             </form>
