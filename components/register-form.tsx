@@ -113,6 +113,7 @@ export const RegisterForm = () => {
                         />
                       </div>
                     </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -130,6 +131,7 @@ export const RegisterForm = () => {
                         />
                       </div>
                     </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -148,6 +150,7 @@ export const RegisterForm = () => {
                         />
                       </div>
                     </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
