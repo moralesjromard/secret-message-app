@@ -4,8 +4,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
-import { AlertCircle, LoaderCircle } from "lucide-react";
+import { useTransition } from "react";
+import { LoaderCircle } from "lucide-react";
 import { toast } from "sonner";
 
 import {
@@ -28,7 +28,6 @@ import { Input } from "@/components/ui/input";
 
 import { register } from "@/actions/auth";
 import { useUserStore } from "@/store/user-store";
-import { Alert, AlertDescription } from "./ui/alert";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -46,8 +45,6 @@ export const RegisterForm = () => {
   const router = useRouter();
 
   const [isPending, startTransition] = useTransition();
-
-  const [error, setError] = useState("");
 
   const { setUser } = useUserStore();
 
